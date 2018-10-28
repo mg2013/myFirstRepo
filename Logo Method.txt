@@ -1,0 +1,32 @@
+" Get logo
+CALL METHOD cl_ssf_xsf_utilities=>get_bds_graphic_as_bmp
+  EXPORTING
+    p_object       = 'GRAPHICS'     " SAPscript Graphics Management: Application object
+    p_name         = 'AQP_LOGO'    " logo Name
+    p_id           = 'BMAP'    " SAPscript Graphics Management: ID
+    p_btype        = 'BCOL'    " SAPscript: Type of graphic
+  RECEIVING
+    p_bmp          = logo " Graphic Data
+  EXCEPTIONS
+    not_found      = 1
+    internal_error = 2
+    OTHERS         = 3.
+****************************
+"$. Region LOGO
+FORM get_logo.
+  CALL METHOD cl_ssf_xsf_utilities=>get_bds_graphic_as_bmp
+    EXPORTING
+      p_object       = 'GRAPHICS'     " SAPscript Graphics Management: Application object
+      p_name         = 'DAFH_LOGO'    " logo Name
+      p_id           = 'BMAP'    " SAPscript Graphics Management: ID
+      p_btype        = 'BCOL'    " SAPscript: Type of graphic
+    RECEIVING
+      p_bmp          = logo " Graphic Data
+    EXCEPTIONS
+      not_found      = 1
+      internal_error = 2
+      OTHERS         = 3.
+ENDFORM.
+"$. Endregion LOGO
+LOGO	TYPE	XSTRING
+PERFORM get_logo.
